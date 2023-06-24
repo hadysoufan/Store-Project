@@ -13,3 +13,4 @@ This is a ReactJs, Django and PostgresSQL Project
 - Django admin
 - Django restframwork
 - axios
+- Pillow

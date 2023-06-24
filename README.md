@@ -14,3 +14,7 @@ This is a ReactJs, Django and PostgresSQL Project
 - Django restframwork
 - axios
 - Pillow
+- Redux
+- React Redux
+- Redux Thunk
+- Redux Devtools Extension

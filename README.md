@@ -9,4 +9,6 @@ This is a ReactJs, Django and PostgresSQL Project
 - Font Awesome
 - React Router Dom
 - React Router Bootstrap
-
+- virtualenv
+- Django admin
+- Django restframwork

@@ -12,3 +12,4 @@ This is a ReactJs, Django and PostgresSQL Project
 - virtualenv
 - Django admin
 - Django restframwork
+- axios

@@ -4,8 +4,7 @@ from rest_framework.response import Response
 
 from django.contrib.auth.models import User
 
-from .models import Product
-from .serializer import ProductSerializer, UserSerializer, UserSerializerWithToken
+from base.serializer import UserSerializer, UserSerializerWithToken
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
@@ -95,18 +94,4 @@ def getUserProfile(request):
 def getUsers(request):
     user = User.objects.all()
     serializer = UserSerializer(user, many=True)
-    return Response(serializer.data)
-
-
-@api_view(['Get'])
-def getProducts(request):
-    products = Product.objects.all()
-    serializer = ProductSerializer(products, many=True)
-    return Response(serializer.data)
-
-
-@api_view(['Get'])
-def getProduct(request, pk):
-    product = Product.objects.get(_id=pk)
-    serializer = ProductSerializer(product, many=False)
     return Response(serializer.data)

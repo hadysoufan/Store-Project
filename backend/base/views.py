@@ -9,6 +9,9 @@ from .serializer import ProductSerializer, UserSerializer, UserSerializerWithTok
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
+from django.contrib.auth.hashers import make_password
+from rest_framework import status
+
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     """
@@ -59,24 +62,24 @@ class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 
-@api_view(['Get'])
-def getRoutes(request):
-    routes = [
-        '/api/products/',
-        '/api/products/create/',
+@api_view(['Post'])
+def registerUser(request):
+    data = request.data
 
-        '/api/products/upload',
+    try:
+        user = User.objects.create(
+            first_name=data['name'],
+            username=data['email'],
+            email=data['email'],
+            password=make_password(data['password'])
+        )
 
-        '/api/products/<id>/reviews/',
+        serializer = UserSerializerWithToken(user, many=False)
+        return Response(serializer.data)
 
-        '/api/products/top/',
-        '/api/products/<id>/',
-
-        '/api/products/delete/<id>/',
-        '/api/products/<update>/<id>/',
-    ]
-
-    return Response(routes)
+    except:
+        message = {'detail': 'User with this email already exists'}
+        return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['Get'])

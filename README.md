@@ -18,3 +18,5 @@ This is a ReactJs, Django and PostgresSQL Project
 - React Redux
 - Redux Thunk
 - Redux Devtools Extension
+- Django RestFramework SimpleJWT
+

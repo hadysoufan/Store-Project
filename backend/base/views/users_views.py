@@ -63,6 +63,16 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 @api_view(['Post'])
 def registerUser(request):
+    """
+    Register a new user.
+
+    Parameters:
+    - request: The HTTP request object containing user registration data in the request data.
+
+    Returns:
+    - Response: The HTTP response object with the serialized user data and a success status code if the registration is successful. If a user with the same email already exists, it returns an error message with a status code indicating a bad request.
+
+    """
     data = request.data
 
     try:
@@ -81,17 +91,68 @@ def registerUser(request):
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['Get'])
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def updateUserProfile(request):
+    """
+    Update the user's profile.
+
+    Parameters:
+    - request: The HTTP request object containing the updated user profile data in the request data.
+
+    Returns:
+    - Response: The HTTP response object with the serialized user data if the profile update is successful.
+
+    """
+    user = request.user
+    serializer = UserSerializerWithToken(user, many=False)
+
+    data = request.data 
+    user.first_name = data['name']
+    user.username = data['email']
+    user.email = data['email']
+    if data['password'] != '':
+        user.password = make_password(data['password'])
+
+    user.save()
+
+    return Response(serializer.data)
+
+
+
+@api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getUserProfile(request):
+    """
+    Retrieve the user's profile.
+
+    Parameters:
+    - request: The HTTP request object.
+
+    Returns:
+    - Response: The HTTP response object with the serialized user data.
+
+    """
     user = request.user
     serializer = UserSerializer(user, many=False)
     return Response(serializer.data)
 
 
-@api_view(['Get'])
+
+@api_view(['GET'])
 @permission_classes([IsAdminUser])
 def getUsers(request):
-    user = User.objects.all()
-    serializer = UserSerializer(user, many=True)
+    """
+    Retrieve all users.
+
+    Parameters:
+    - request: The HTTP request object.
+
+    Returns:
+    - Response: The HTTP response object with the serialized user data.
+
+    """
+    users = User.objects.all()
+    serializer = UserSerializer(users, many=True)
     return Response(serializer.data)

@@ -57,6 +57,7 @@ export const login = (email, password) => async (dispatch) => {
       payload: data,
     });
 
+    // Save user info to local storage
     localStorage.setItem('userInfo', JSON.stringify(data));
   } catch (error) {
     dispatch({
@@ -73,6 +74,7 @@ export const login = (email, password) => async (dispatch) => {
  * Logs out a user.
  */
 export const logout = () => (dispatch) => {
+  // Remove user info from local storage
   localStorage.removeItem('userInfo');
   dispatch({ type: USER_LOGOUT });
   dispatch({ type: USER_DETAILS_RESET });

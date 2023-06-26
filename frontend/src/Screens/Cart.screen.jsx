@@ -13,31 +13,39 @@ import {
 import Message from '../components/Message';
 import { addToCart, removeFromCart } from '../actions/cartAction';
 
+/**
+ * The Cart component displays the items in the shopping cart and allows the user to update or remove items.
+ */
 function Cart() {
   const location = useLocation();
   const navigate = useNavigate();
-
   const { id } = useParams();
-
   const qty = location.search ? Number(location.search.split('=')[1]) : 1;
 
   const dispatch = useDispatch();
-
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
   useEffect(() => {
+    // Add the item to the cart when the component mounts
     if (id) {
       dispatch(addToCart(id, qty));
       console.log('added to cart');
     }
   }, [dispatch, id, qty]);
 
+  /**
+   * Removes an item from the cart.
+   * @param {string} id - The ID of the item to be removed.
+   */
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
     console.log('remove:', id);
   };
 
+  /**
+   * Handles the checkout process and redirects the user to the shipping page.
+   */
   const checkOutHandler = () => {
     navigate('/login?redirect=shipping');
   };
@@ -53,7 +61,7 @@ function Cart() {
         ) : (
           <ListGroup variant="flush">
             {cartItems.map((item) => (
-              <ListGroup key={item.product}>
+              <ListGroup.Item key={item.product}>
                 <Row>
                   <Col md={2}>
                     <Image src={item.image} alt={item.name} fluid rounded />
@@ -62,7 +70,6 @@ function Cart() {
                     <Link to={`/products/${item.product}`}>{item.name}</Link>
                   </Col>
                   <Col md={2}>${item.price}</Col>
-
                   <Col md={3}>
                     <Form.Control
                       as="select"
@@ -79,7 +86,6 @@ function Cart() {
                       ))}
                     </Form.Control>
                   </Col>
-
                   <Col md={1}>
                     <Button
                       type="button"
@@ -89,7 +95,7 @@ function Cart() {
                     </Button>
                   </Col>
                 </Row>
-              </ListGroup>
+              </ListGroup.Item>
             ))}
           </ListGroup>
         )}

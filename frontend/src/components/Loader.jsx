@@ -1,6 +1,9 @@
 import React from 'react';
 import { Spinner } from 'react-bootstrap';
 
+/**
+ * Loader component representing a loading spinner.
+ */
 function Loader() {
   return (
     <Spinner

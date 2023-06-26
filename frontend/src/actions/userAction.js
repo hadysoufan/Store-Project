@@ -29,6 +29,11 @@ import {
 
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants';
 
+/**
+ * Logs in a user.
+ * @param {string} email - User's email.
+ * @param {string} password - User's password.
+ */
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({
@@ -64,6 +69,9 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
+/**
+ * Logs out a user.
+ */
 export const logout = () => (dispatch) => {
   localStorage.removeItem('userInfo');
   dispatch({ type: USER_LOGOUT });
@@ -72,6 +80,12 @@ export const logout = () => (dispatch) => {
   dispatch({ type: USER_LIST_RESET });
 };
 
+/**
+ * Registers a new user.
+ * @param {string} name - User's name.
+ * @param {string} email - User's email.
+ * @param {string} password - User's password.
+ */
 export const register = (name, email, password) => async (dispatch) => {
   try {
     dispatch({
@@ -112,6 +126,10 @@ export const register = (name, email, password) => async (dispatch) => {
   }
 };
 
+/**
+ * Fetches the details of a user.
+ * @param {string} id - User's ID.
+ */
 export const getUserDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -146,6 +164,10 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
   }
 };
 
+/**
+ * Updates the user's profile.
+ * @param {object} user - User's profile data.
+ */
 export const updateUserProfile = (user) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -191,6 +213,9 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
   }
 };
 
+/**
+ * Fetches the list of users.
+ */
 export const listUsers = () => async (dispatch, getState) => {
   try {
     dispatch({
@@ -225,6 +250,10 @@ export const listUsers = () => async (dispatch, getState) => {
   }
 };
 
+/**
+ * Deletes a user.
+ * @param {string} id - User's ID.
+ */
 export const deleteUser = (id) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -259,6 +288,10 @@ export const deleteUser = (id) => async (dispatch, getState) => {
   }
 };
 
+/**
+ * Updates a user.
+ * @param {object} user - User's data.
+ */
 export const updateUser = (user) => async (dispatch, getState) => {
   try {
     dispatch({

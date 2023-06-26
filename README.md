@@ -21,7 +21,7 @@ This project includes code snippets for user authentication, registration, profi
 
 To run this project locally, follow these steps:
 
-1. Clone the repository: `git clone <[repository-url](https://github.com/hadysoufan/Store-Project.git)>`
+1. Clone the repository: `git clone (https://github.com/hadysoufan/Store-Project.git)`
 
 2. Install the required dependencies: Run the following command to install the necessary packages: `npm install react-bootstrap boostwatch react-router-dom react-router-bootstrap`
 

@@ -1,12 +1,15 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
+/**
+ * Footer component displaying copyright information.
+ */
 function Footer() {
   return (
     <div>
       <Container>
         <Row>
-          <Col className="text-center py-3 ">Copyright &copy; 2023 - Store</Col>
+          <Col className="text-center py-3">Copyright &copy; 2023 - Store</Col>
         </Row>
       </Container>
     </div>

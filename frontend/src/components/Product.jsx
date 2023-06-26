@@ -3,6 +3,17 @@ import { Card } from 'react-bootstrap';
 import Rating from '../components/Rating';
 import { Link } from 'react-router-dom';
 
+/**
+ * Product component for displaying a product card.
+ * @param {Object} props - Component props.
+ * @param {Object} props.product - The product object containing product details.
+ * @param {string} props.product._id - The unique ID of the product.
+ * @param {string} props.product.name - The name of the product.
+ * @param {string} props.product.image - The URL of the product image.
+ * @param {number} props.product.rating - The product rating.
+ * @param {number} props.product.numReviews - The number of reviews for the product.
+ * @param {number} props.product.price - The price of the product.
+ */
 function Product({ product }) {
   return (
     <Card className="my-3 p-3 rounded">

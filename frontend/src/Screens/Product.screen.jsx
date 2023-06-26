@@ -11,29 +11,30 @@ import {
 } from 'react-bootstrap';
 import Rating from '../components/Rating';
 import { useDispatch, useSelector } from 'react-redux';
-import { listproductDetails } from '../actions/productActions';
+import { listProductDetails } from '../actions/productActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
+/**
+ * The Product component displays the details of a single product.
+ */
 function Product() {
   const [qty, setQty] = useState(1);
 
   const { id } = useParams();
-
   const dispatch = useDispatch();
-
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const productDetails = useSelector((state) => state.productDetails);
-
   const { loading, error, product } = productDetails;
 
   useEffect(() => {
-    dispatch(listproductDetails(id));
+    // Fetches the details of the product when the component mounts
+    dispatch(listProductDetails(id));
   }, [dispatch, id]);
 
   const addToCartHandler = () => {
-    navigate(`/cart/${id} ?qty=${qty}`);
+    navigate(`/cart/${id}?qty=${qty}`);
   };
 
   return (
@@ -43,8 +44,10 @@ function Product() {
       </Link>
 
       {loading ? (
+        // Display a loading spinner while the product details are being fetched
         <Loader />
       ) : error ? (
+        // Display an error message if there is an error fetching the product details
         <Message variant="danger">{error}</Message>
       ) : (
         <Row>

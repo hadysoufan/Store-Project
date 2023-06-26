@@ -7,6 +7,7 @@ import ProductScreen from './Screens/Product.screen';
 import Cart from './Screens/Cart.screen';
 import LoginScreen from './Screens/Login.screen';
 import RegisterScreen from './Screens/Register.screen';
+import ProfileScreen from './Screens/Profile.screen';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/cart/:id?" element={<Cart />} />
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/register" element={<RegisterScreen />} />
+            <Route path="/profile" element={<ProfileScreen />} />
           </Routes>
         </Container>
       </main>

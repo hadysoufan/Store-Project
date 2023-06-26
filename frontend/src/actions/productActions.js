@@ -8,6 +8,9 @@ import {
   PRODUCT_DETAILS_FAIL,
 } from '../constants/productConstants';
 
+/**
+ * Fetches a list of products.
+ */
 export const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
@@ -29,6 +32,10 @@ export const listProducts = () => async (dispatch) => {
   }
 };
 
+/**
+ * Fetches the details of a specific product.
+ * @param {string} id - The ID of the product.
+ */
 export const listproductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });

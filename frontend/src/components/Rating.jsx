@@ -1,5 +1,12 @@
 import React from 'react';
 
+/**
+ * Rating component for displaying a visual representation of a rating.
+ * @param {Object} props - Component props.
+ * @param {number} props.value - The rating value.
+ * @param {string} props.text - The additional text to display alongside the rating.
+ * @param {string} props.color - The color of the rating stars.
+ */
 function Rating({ value, text, color }) {
   return (
     <div className="rating">
@@ -59,7 +66,7 @@ function Rating({ value, text, color }) {
           }></i>
       </span>
 
-      <span>{text && text}</span>
+      {text && <span>{text}</span>}
     </div>
   );
 }
